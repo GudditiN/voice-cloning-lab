@@ -1,9 +1,31 @@
 {
   "name": "voice-cloning-lab",
-  "build": { "dockerfile": "../Dockerfile", "context": ".." },
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:4": {}
+  },
   "forwardPorts": [7860, 8000],
-  "portsAttributes": { "7860": { "label": "Web UI" }, "8000": { "label": "API" } },
-  "customizations": { "vscode": { "extensions": ["ms-python.python", "ms-toolsai.jupyter"] } }
+  "portsAttributes": {
+    "7860": {
+      "label": "Web UI"
+    },
+    "8000": {
+      "label": "API"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
 }
