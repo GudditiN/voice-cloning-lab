@@ -3,8 +3,8 @@
   "name": "voice-cloning-lab",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest",
+    "ghcr.io/devcontainers/features/docker-in-docker:4": {
+      "moby": true,
       "enableNonRootDocker": true
     },
     "ghcr.io/devcontainers/features/python:1": {
@@ -13,9 +13,15 @@
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/irfansofyana/devcontainer-features/lazydocker-binary-release:1": {}
   },
-  "runArgs": ["--privileged"],
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-  "forwardPorts": [7860],
+  "runArgs": [
+    "--privileged"
+  ],
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "forwardPorts": [
+    7860
+  ],
   "portsAttributes": {
     "7860": {
       "label": "Voice Cloning Web UI"
