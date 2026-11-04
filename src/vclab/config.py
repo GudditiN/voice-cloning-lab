@@ -11,6 +11,8 @@ OUTPUT_DIR = ROOT / "outputs"
 XTTS_MODEL = "tts_models/multilingual/multi-dataset/xtts_v2"
 SAMPLE_RATE = 22050  # XTTS training sample rate
 OUTPUT_SAMPLE_RATE = 24000  # XTTS synthesis sample rate
+# Transcription model for training data: tiny (~75MB) < base (~150MB, default) < small (~480MB, more accurate)
+WHISPER_MODEL = os.environ.get("VCLAB_WHISPER_MODEL", "base")
 LANGUAGE = os.environ.get("VCLAB_LANGUAGE", "en")
 
 

@@ -1,4 +1,4 @@
-"""FastAPI service: POST /tts returns wav; web UI mounted at /ui. Future avatar/realtime layers call this."""
+"""FastAPI service: POST /tts returns wav; web UI served at /. Future avatar/realtime layers call this."""
 from __future__ import annotations
 
 import io
@@ -54,7 +54,7 @@ def mount_ui() -> None:
 
     from .webui import build
 
-    gr.mount_gradio_app(app, build(), path="/ui")
+    gr.mount_gradio_app(app, build(), path="/")
 
 
 mount_ui()

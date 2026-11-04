@@ -96,7 +96,7 @@ def transcribe(clips: list[Path], language: str = config.LANGUAGE) -> list[str]:
     from faster_whisper import WhisperModel
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = WhisperModel("small", device=device, compute_type="float16" if device == "cuda" else "int8")
+    model = WhisperModel(config.WHISPER_MODEL, device=device, compute_type="float16" if device == "cuda" else "int8")
     texts = []
     for p in clips:
         segs, _ = model.transcribe(str(p), language=language)

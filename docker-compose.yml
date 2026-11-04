@@ -1,19 +1,9 @@
+# Start:  docker compose up --build      then open http://localhost:7860
 services:
-  webui:                      # CPU: record, zero-shot synth, data prep
+  app:
     build: .
     ports: ["7860:7860"]
-    volumes: ["./data:/workspace/data", "./models:/workspace/models", "./outputs:/workspace/outputs"]
-  api:                        # REST: POST /tts, web UI also at /ui
-    build: .
-    command: uvicorn vclab.server:app --host 0.0.0.0 --port 8000
-    ports: ["8000:8000"]
-    volumes: ["./data:/workspace/data", "./models:/workspace/models", "./outputs:/workspace/outputs"]
-  webui-gpu:                  # docker compose --profile gpu up webui-gpu  (needs NVIDIA container toolkit)
-    profiles: ["gpu"]
-    build: {context: ., dockerfile: Dockerfile.gpu}
-    ports: ["7860:7860"]
-    volumes: ["./data:/workspace/data", "./models:/workspace/models", "./outputs:/workspace/outputs"]
-    deploy:
-      resources:
-        reservations:
-          devices: [{driver: nvidia, count: 1, capabilities: [gpu]}]
+    volumes:
+      - ./data:/workspace/data
+      - ./models:/workspace/models
+      - ./outputs:/workspace/outputs
